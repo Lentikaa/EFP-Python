@@ -1,0 +1,31 @@
+def sort_colors(nums):
+    """
+    Sort the colors in the array in the order red (0), white (1), and blue (2).
+
+    Args:
+    nums (List[int]): Array of colors where 0=red, 1=white, and 2=blue.
+
+    Returns:
+    None: The function that modifies the list in-place.
+    """
+    lower, middle, higher = 0, 0, len(nums) - 1
+
+    # Process elements until middle surpasses higher
+    while middle <= higher:
+        if nums[middle] == 0:
+            # Swap red to the front
+            nums[lower], nums[middle] = nums[middle], nums[lower]
+            lower += 1
+            middle += 1
+        elif nums[middle] == 1:
+            # Move to the next element if white
+            middle += 1
+        else:
+            # Swap blue to the end
+            nums[middle], nums[higher] = nums[higher], nums[middle]
+            higher -= 1
+
+# Example usage
+nums = [2, 0, 2, 1, 1, 0]
+sort_colors(nums)
+print(nums)  # Output: [0, 0, 1, 1, 2, 2]
